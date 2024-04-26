@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS =  -g -I../include
+CFLAGS =  -g -I../include -fsanitize=address
 
 # 编译并链接
 %: ../include/%.c ../include/%.h %.c

@@ -1,6 +1,7 @@
 #include "../include/SeqList.h"
 #include <assert.h>
 #include <stdbool.h>
+#include <stdio.h>
 void BasicTest();
 void DeleteMinimumTest();
 void ReverseSeqListTest();
@@ -8,6 +9,12 @@ void DeleteElemXTest();
 void DeleteRangeSandTTest();
 void DeDupSortedSeqListTest();
 void MergeSortedSeqListTest();
+void MNReverseTest();
+void BinarySearchTest();
+void FindAndExchangeXTest();
+void OutputCommonElemTest();
+
+void FindMedianOfTwoSeqListTest();
 int main(){
 	//BasicTest();
 	//DeleteMinimumTest();
@@ -15,7 +22,12 @@ int main(){
 	//DeleteElemXTest();
 	//DeleteRangeSandTTest();
 	 //DeDupSortedSeqListTest();
-	 MergeSortedSeqListTest();
+	//  MergeSortedSeqListTest();
+	// MNReverseTest();
+	//  BinarySearchTest();
+	// FindAndExchangeXTest();
+	// OutputCommonElemTest();
+	FindMedianOfTwoSeqListTest();
 }
 
 void BasicTest(){
@@ -120,4 +132,92 @@ void MergeSortedSeqListTest(){
 	DestroyList(&L);
 	DestroyList(&R);
 	DestroyList(&output);
+}
+
+void MNReverseTest(){
+	SeqList list;
+	InitList(&list);
+	for (int i = 0; i<15; i++) {
+		ListInsert(&list,0,i);
+	}
+	PrintList(&list);
+	MNReverse(&list,7, 8);
+	PrintList(&list);
+	DestroyList(&list);
+}
+
+void BinarySearchTest(){
+	SeqList list;
+	InitList(&list);
+	for (int i = 14; i>=0; i--) {
+		ListInsert(&list,0,i*2);
+	}
+	PrintList(&list);
+	int index = -1;
+	int seven = BinarySearch(&list, 3,&index);
+	printf("%d\n",index);
+	DestroyList(&list);
+
+}
+
+void FindAndExchangeXTest(){
+	SeqList list;
+	InitList(&list);
+	for (int i = 14; i>=0; i--) {
+		ListInsert(&list,0,i*2);
+	}
+	PrintList(&list);
+	FindAndExchangeX(&list,1);
+	PrintList(&list);
+	DestroyList(&list);
+}
+
+void OutputCommonElemTest(){
+	SeqList list1;
+	InitList(&list1);
+	ListInsert(&list1,0,5);
+	ListInsert(&list1,0,2);
+	ListInsert(&list1,0,1);
+	SeqList list2;
+	InitList(&list2);
+	ListInsert(&list2,0,5);
+	ListInsert(&list2,0,3);
+	ListInsert(&list2,0,2);
+	SeqList list3;
+	InitList(&list3);
+	ListInsert(&list3,0,5);
+	ListInsert(&list3,0,4);
+	ListInsert(&list3,0,3);
+	PrintList(&list1);
+	PrintList(&list2);
+	PrintList(&list3);
+	OutputCommonElem(&list1, &list2, &list3);
+
+	DestroyList(&list1);
+	DestroyList(&list2);
+	DestroyList(&list3);
+}
+
+void FindMedianOfTwoSeqListTest(){
+	SeqList list1;
+	InitList(&list1);
+	ListInsert(&list1,0,19);
+	ListInsert(&list1,0,17);
+	ListInsert(&list1,0,15);
+	ListInsert(&list1,0,13);
+	ListInsert(&list1,0,11);
+	SeqList list2;
+	InitList(&list2);
+	ListInsert(&list2,0,20);
+	ListInsert(&list2,0,8);
+	ListInsert(&list2,0,6);
+	ListInsert(&list2,0,4);
+	ListInsert(&list2,0,2);
+	ElemType median = FindMedianOfTwoSeqList(&list1, &list2);
+	PrintList(&list1);
+	PrintList(&list2);
+	printf("Median is %d\n",median);
+
+	DestroyList(&list1);
+	DestroyList(&list2);
 }
