@@ -94,7 +94,11 @@ void ListPush(LinkList *L,ElemType e);
  */
 void PrintList(LinkList *L);
 
-
+/**
+ * @brief 单链表的析构函数
+ * 
+ * @param L 
+ */
 
 void DestroyList(LinkList *L);
 #endif
