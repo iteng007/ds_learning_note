@@ -13,7 +13,7 @@ void MNReverseTest();
 void BinarySearchTest();
 void FindAndExchangeXTest();
 void OutputCommonElemTest();
-
+void MajorityTest();
 void FindMedianOfTwoSeqListTest();
 int main(){
 	//BasicTest();
@@ -27,7 +27,8 @@ int main(){
 	//  BinarySearchTest();
 	// FindAndExchangeXTest();
 	// OutputCommonElemTest();
-	FindMedianOfTwoSeqListTest();
+	//FindMedianOfTwoSeqListTest();
+	MajorityTest();
 }
 
 void BasicTest(){
@@ -220,4 +221,17 @@ void FindMedianOfTwoSeqListTest(){
 
 	DestroyList(&list1);
 	DestroyList(&list2);
+}
+void MajorityTest(){
+	SeqList list1;
+	InitList(&list1);
+	ListInsert(&list1,0,13);
+	ListInsert(&list1,0,13);
+	ListInsert(&list1,0,13);
+	ListInsert(&list1,0,11);
+	ListInsert(&list1,0,11);
+	PrintList(&list1);
+	ElemType majority = Majority(&list1);
+	printf("%d\n",majority);
+	DestroyList(&list1);
 }

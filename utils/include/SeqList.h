@@ -139,9 +139,28 @@ void OutputCommonElem(SeqList *L1,SeqList *L2,SeqList *L3);
  * 
  * @param L1 
  * @param L2 
- * @return ElemType 
- * 算法设计思想：
+ * @return ElemType 两个等长升序表中的中位数
+ * 算法设计思想：每次分别从两个升序表中找出中位数，分别比较两个中位数的大小，
+ * 随后舍弃中位数更小的升序表的较小一侧的数字，中位数更大的升序表较大一侧的数字
+ * （如果剩余数字为奇数，则保留中位数）。直至最后两个升序表只剩一个元素，剩下元素
+ * 中较小者为中位数
+ * 采用递归的方式。
+ * 算法复杂度分析：采用二分思想，总共递归次数不超过logn次。故算法复杂度为
+ * O(logn)
+ * 空间复杂度分析。每次递归都会在栈上临时保存4个临时变量
+ * 总共不超过4logn个故空间复杂度为O(logn)
+ * 同时该递归方式为尾递归，可通过编译器优化实现O(1);
+ * 或可改写为迭代方式，空间复杂度为O(1);
  */
 ElemType FindMedianOfTwoSeqList(SeqList *L1,SeqList *L2);
+
+/**
+ * @brief 使用Boyer-Moore 算法找到众数
+ * 
+ * @param L 
+ * @return ElemType 
+ */
+
+ElemType Majority(SeqList *L);
 #endif
 

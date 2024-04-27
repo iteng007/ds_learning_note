@@ -277,3 +277,33 @@ ElemType MedianHelper(SeqList *L1,SeqList *L2,int start1,int end1,int start2,int
 ElemType FindMedianOfTwoSeqList(SeqList *L1,SeqList *L2){
 	return MedianHelper(L1, L2, 0, L1->Length-1, 0, L2->Length-1);
 }
+
+ElemType Majority(SeqList *L){
+	ElemType e = L->data[0];
+	int count = 1;
+	for (int i = 1; i<L->Length; i++) {
+		if (L->data[i]==e) {
+			count++;
+		}else {
+		   if (count>0) {
+			count--;
+		   }else {
+		    e = L->data[i];
+			count=1;
+		   }
+		}
+	}
+	if (count<=0) {
+		return -1;
+	}
+	count = 0;
+	for (int i = 0; i<L->Length; i++) {
+		if (L->data[i]==e) {
+			count++;
+		}
+	}
+	if (count>L->Length/2) {
+		return e;
+	}
+	return -1;
+}
