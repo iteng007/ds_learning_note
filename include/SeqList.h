@@ -22,7 +22,7 @@ void DestroyList(SeqList *L);
  * 
  * @param L 
  * @param e 
- * @param index 找到则为对应下标，否则为一个离e最近的值下标
+ * @param index 找到则为对应下标，否则为第一个大于e的值下标
  * @return 若找到，返回true，否则false
  */
 bool BinarySearch(SeqList *L,ElemType e,int * index);
@@ -156,11 +156,49 @@ ElemType FindMedianOfTwoSeqList(SeqList *L1,SeqList *L2);
 
 /**
  * @brief 使用Boyer-Moore 算法找到众数
+ * https://www.youtube.com/watch?v=7pnhv842keE&ab_channel=NeetCode
  * 
  * @param L 
  * @return ElemType 
  */
 
 ElemType Majority(SeqList *L);
+
+/**
+ * @brief 给定一个无序数组，其中可能包含重复元素，找出数组中未出现的最小正整数。
+
+例如
+
+数组 {3, 4, -1, 0, 2, 3} 中未出现的最小正整数是 1。
+数组 {1, 2, 5, 3, 6, 4} 中未出现的最小正整数是 7。
+要求
+
+给出算法的基本设计思想。
+根据设计思想，采用 C 或 C++ 语言描述算法，关键之处给出注释。
+说明你所设计算法的时间复杂度和空间复杂度。
+ * 
+ * @param L 
+ * @return ElemType 
+ */
+ElemType MinPosNonExistConst(SeqList *L);
+
+/**
+ * @brief 给定3个非空整数集合S1、S2和S3,按升序分别存储在3个数组中。请设计一个尽可能
+高效的算法,计算并输出所有可能的三元组(a, b, c)(aes, beS, CES3)中的最小距
+离。例如S₁ = {-1, 0,9}, S₂ = {-25, -10, 10, 113, S3 = {2, 9, 17, 30, 41},则最小距离为2,
+相应的三元组为(9,10,9)。要求:
+
+1)给出算法的基本设计思想。
+
+2)根据设计思想,采用C语言或C++语言描述算法,关键之处给出注释。
+
+3)说明你所设计算法的时间复杂度和空间复杂度。
+ * 
+ * @param list1 
+ * @param list2 
+ * @param list3 
+ * @return int 
+ */
+int MinTripDistance(SeqList *list1,SeqList *list2,SeqList *list3);
 #endif
 

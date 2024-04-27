@@ -1,4 +1,6 @@
-#include "SeqList.h"
+#include "../include/SeqList.h"
+#include <complex.h>
+#include <limits.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,7 +11,7 @@ void InitList(SeqList *L) {
   L->MaxSize = InitSize;
 }
 int Length(SeqList *L) { return L->Length; };
-int LocateElem(SeqList *L, ElemType e) {
+ElemType LocateElem(SeqList *L, ElemType e) {
   for (int i = 0; i < L->Length; i++) {
     if (L->data[i] == e) {
       return i;
@@ -185,7 +187,7 @@ void FindAndExchangeX(SeqList *L, ElemType x) {
   L->Length++;
 }
 
-ElemType max(int *elem, int num) {
+ElemType max(ElemType *elem, int num) {
   int max_val = elem[0];
   for (int i = 0; i < num; i++) {
     if (elem[i] > max_val) {
@@ -195,7 +197,7 @@ ElemType max(int *elem, int num) {
   return max_val;
 }
 
-ElemType min(int *elem, int num) {
+ElemType min(ElemType *elem, int num) {
   int min_val = elem[0];
   for (int i = 0; i < num; i++) {
     if (elem[i] < min_val) {
@@ -306,4 +308,49 @@ ElemType Majority(SeqList *L){
 		return e;
 	}
 	return -1;
+}
+
+ElemType MinPosNonExistConst(SeqList *L){
+	//典型空间换时间，bloom filter秒杀
+	bool arr[L->Length];
+	for (int i = 0; i<L->Length; i++) {
+		if (L->data[i]<L->Length) {
+			arr[L->data[i]]=1;
+		}
+	}
+	int i = 1;	
+	for (; i<L->Length; i++) {
+		if (!arr[i]) {
+			return i;
+		}
+	}
+	return i;
+}
+
+int MinTripDistance(SeqList *list1,SeqList *list2,SeqList *list3){
+	int i = 0,j = 0,k = 0;
+	int a,b,c; 
+	int distance = INT_MAX;
+	int temp_distance;
+	int elems[3];
+	int min_val = min(elems, 3);
+	while (i<list1->Length&&j<list2->Length&&k<list3->Length) {
+    a = list1->data[i],b = list2->data[j],c = list3->data[k]; 
+    elems[0] = a;
+	  elems[1] = b;
+	  elems[2] = c;
+    int min_val = min(elems, 3);
+		temp_distance = abs(a-b)+abs(b-c)+abs(c-a);
+		if (temp_distance<distance) {
+			distance = temp_distance;
+		}
+		if (min_val == a) {
+			i++;
+		}else if (min_val == b) {
+			j++;
+		}else {
+		   k++;
+		}
+	}
+	return distance;
 }

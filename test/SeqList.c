@@ -15,6 +15,9 @@ void FindAndExchangeXTest();
 void OutputCommonElemTest();
 void MajorityTest();
 void FindMedianOfTwoSeqListTest();
+void MinPosNonExistConstTest();
+
+void MinTripDistanceTest();
 int main(){
 	//BasicTest();
 	//DeleteMinimumTest();
@@ -28,7 +31,9 @@ int main(){
 	// FindAndExchangeXTest();
 	// OutputCommonElemTest();
 	//FindMedianOfTwoSeqListTest();
-	MajorityTest();
+	//MajorityTest();
+	//MinPosNonExistConstTest();
+	 MinTripDistanceTest();
 }
 
 void BasicTest(){
@@ -234,4 +239,47 @@ void MajorityTest(){
 	ElemType majority = Majority(&list1);
 	printf("%d\n",majority);
 	DestroyList(&list1);
+}
+
+void MinPosNonExistConstTest(){
+	SeqList list1;
+	InitList(&list1);
+	ListInsert(&list1,0,1);
+	ListInsert(&list1,0,3);
+	ListInsert(&list1,0,4);
+	ListInsert(&list1,0,5);
+	ListInsert(&list1,0,7);
+	PrintList(&list1);
+	ElemType min = MinPosNonExistConst(&list1);
+	printf("%d\n",min);
+	DestroyList(&list1);
+}
+
+void MinTripDistanceTest(){
+	SeqList list1;
+	InitList(&list1);
+	ListInsert(&list1,0,9);
+	ListInsert(&list1,0,0);
+	ListInsert(&list1,0,-1);
+	SeqList list2;
+	InitList(&list2);
+	ListInsert(&list2,0,113);
+	ListInsert(&list2,0,10);
+	ListInsert(&list2,0,-10);
+	ListInsert(&list2,0,-25);
+	SeqList list3;
+	InitList(&list3);
+	ListInsert(&list3,0,41);
+	ListInsert(&list3,0,30);
+	ListInsert(&list3,0,17);
+	ListInsert(&list3,0,9);
+	ListInsert(&list3,0,2);
+	PrintList(&list1);
+	PrintList(&list2);
+	PrintList(&list3);
+	int min_distance = MinTripDistance(&list1, &list2, &list3);
+	printf("%d\n",min_distance);
+	DestroyList(&list1);
+	DestroyList(&list2);
+	DestroyList(&list3);
 }
