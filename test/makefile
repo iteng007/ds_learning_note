@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS =  -g -I../include -fsanitize=address
 
 # 编译并链接
-%: ../src/%.c ../include/%.h %.c
+%: ../src/%.c  %.c
 	$(CC) $(CFLAGS) -o $@ $^
 
 
