@@ -38,248 +38,248 @@ int main(){
 
 void BasicTest(){
 	SeqList list;
-	InitList(&list);
+	InitSeqList(&list);
 	assert(list.Length==0);
-	bool inserted = ListInsert(&list,0,1);
+	bool inserted = SeqListInsert(&list,0,1);
 	assert(inserted);
-	PrintList(&list);
+	PrintSeqList(&list);
 	assert(list.Length==1);
 	ElemType elem;
-	bool deleted = ListDelete(&list,0,&elem);
+	bool deleted = SeqListDelete(&list,0,&elem);
 	assert(deleted);
 	assert(list.Length==0);
-	PrintList(&list);
-	DestroyList(&list);
+	PrintSeqList(&list);
+	DestroySeqList(&list);
 }
 void DeleteMinimumTest(){
 	SeqList list;
-	InitList(&list);
+	InitSeqList(&list);
 	for (int i = 0; i<10; i++) {
-		ListInsert(&list,0,i);
+		SeqListInsert(&list,0,i);
 	}
-	PrintList(&list);
+	PrintSeqList(&list);
 	assert(list.Length == 10);
 	DeleteMinimum(&list);
-	PrintList(&list);
+	PrintSeqList(&list);
 	DeleteMinimum(&list);
-	PrintList(&list);
+	PrintSeqList(&list);
 	list.data[2]=0;
 	DeleteMinimum(&list);
-	PrintList(&list);
-	DestroyList(&list);
+	PrintSeqList(&list);
+	DestroySeqList(&list);
 }
 
 void ReverseSeqListTest(){
 	SeqList list;
-	InitList(&list);
+	InitSeqList(&list);
 	for (int i = 0; i<15; i++) {
-		ListInsert(&list,0,i);
+		SeqListInsert(&list,0,i);
 	}
-	PrintList(&list);
+	PrintSeqList(&list);
 	ReverseSeqList(&list);
-	PrintList(&list);
-	DestroyList(&list);
+	PrintSeqList(&list);
+	DestroySeqList(&list);
 }
 
 void DeleteElemXTest(){
 	SeqList list;
-	InitList(&list);
+	InitSeqList(&list);
 	for (int i = 0; i<15; i++) {
-		ListInsert(&list,0,i);
+		SeqListInsert(&list,0,i);
 	}
-	PrintList(&list);
+	PrintSeqList(&list);
 	DeleteElemX(&list, 13);
-	PrintList(&list);
-	DestroyList(&list);
+	PrintSeqList(&list);
+	DestroySeqList(&list);
 }
 
 void DeleteRangeSandTTest(){
 	SeqList list;
-	InitList(&list);
+	InitSeqList(&list);
 	for (int i = 0; i<15; i++) {
-		ListInsert(&list,0,i);
+		SeqListInsert(&list,0,i);
 	}
-	PrintList(&list);
+	PrintSeqList(&list);
 	DeleteRangeSandT(&list, 10, 13);
-	PrintList(&list);
-	DestroyList(&list);
+	PrintSeqList(&list);
+	DestroySeqList(&list);
 }
 
 void DeDupSortedSeqListTest(){
 	SeqList list;
-	InitList(&list);
+	InitSeqList(&list);
 	for (int i = 0; i<15; i++) {
-		ListInsert(&list,0,i);
-		ListInsert(&list,0,i);
+		SeqListInsert(&list,0,i);
+		SeqListInsert(&list,0,i);
 	}
-	PrintList(&list);
+	PrintSeqList(&list);
 	DeDupSortedSeqList(&list);
-	PrintList(&list);
-	DestroyList(&list);
+	PrintSeqList(&list);
+	DestroySeqList(&list);
 }
 
 void MergeSortedSeqListTest(){
 	SeqList L;
-	InitList(&L);
+	InitSeqList(&L);
 	for (int i = 15; i>=0; i--) {
-		ListInsert(&L,0,i);
+		SeqListInsert(&L,0,i);
 	}
-	PrintList(&L);
+	PrintSeqList(&L);
 	SeqList R;
-	InitList(&R);
+	InitSeqList(&R);
 	for (int i = 15; i>=0; i--) {
-		ListInsert(&R,0,i*2);
+		SeqListInsert(&R,0,i*2);
 	}
 	SeqList output;
-	InitList(&output);
-	PrintList(&R);
+	InitSeqList(&output);
+	PrintSeqList(&R);
 	MergeSortedSeqList(&L, &R, &output);
-	PrintList(&output);
-	DestroyList(&L);
-	DestroyList(&R);
-	DestroyList(&output);
+	PrintSeqList(&output);
+	DestroySeqList(&L);
+	DestroySeqList(&R);
+	DestroySeqList(&output);
 }
 
 void MNReverseTest(){
 	SeqList list;
-	InitList(&list);
+	InitSeqList(&list);
 	for (int i = 0; i<15; i++) {
-		ListInsert(&list,0,i);
+		SeqListInsert(&list,0,i);
 	}
-	PrintList(&list);
+	PrintSeqList(&list);
 	MNReverse(&list,7, 8);
-	PrintList(&list);
-	DestroyList(&list);
+	PrintSeqList(&list);
+	DestroySeqList(&list);
 }
 
 void BinarySearchTest(){
 	SeqList list;
-	InitList(&list);
+	InitSeqList(&list);
 	for (int i = 14; i>=0; i--) {
-		ListInsert(&list,0,i*2);
+		SeqListInsert(&list,0,i*2);
 	}
-	PrintList(&list);
+	PrintSeqList(&list);
 	int index = -1;
 	int seven = BinarySearch(&list, 3,&index);
 	printf("%d\n",index);
-	DestroyList(&list);
+	DestroySeqList(&list);
 
 }
 
 void FindAndExchangeXTest(){
 	SeqList list;
-	InitList(&list);
+	InitSeqList(&list);
 	for (int i = 14; i>=0; i--) {
-		ListInsert(&list,0,i*2);
+		SeqListInsert(&list,0,i*2);
 	}
-	PrintList(&list);
+	PrintSeqList(&list);
 	FindAndExchangeX(&list,1);
-	PrintList(&list);
-	DestroyList(&list);
+	PrintSeqList(&list);
+	DestroySeqList(&list);
 }
 
 void OutputCommonElemTest(){
 	SeqList list1;
-	InitList(&list1);
-	ListInsert(&list1,0,5);
-	ListInsert(&list1,0,2);
-	ListInsert(&list1,0,1);
+	InitSeqList(&list1);
+	SeqListInsert(&list1,0,5);
+	SeqListInsert(&list1,0,2);
+	SeqListInsert(&list1,0,1);
 	SeqList list2;
-	InitList(&list2);
-	ListInsert(&list2,0,5);
-	ListInsert(&list2,0,3);
-	ListInsert(&list2,0,2);
+	InitSeqList(&list2);
+	SeqListInsert(&list2,0,5);
+	SeqListInsert(&list2,0,3);
+	SeqListInsert(&list2,0,2);
 	SeqList list3;
-	InitList(&list3);
-	ListInsert(&list3,0,5);
-	ListInsert(&list3,0,4);
-	ListInsert(&list3,0,3);
-	PrintList(&list1);
-	PrintList(&list2);
-	PrintList(&list3);
+	InitSeqList(&list3);
+	SeqListInsert(&list3,0,5);
+	SeqListInsert(&list3,0,4);
+	SeqListInsert(&list3,0,3);
+	PrintSeqList(&list1);
+	PrintSeqList(&list2);
+	PrintSeqList(&list3);
 	OutputCommonElem(&list1, &list2, &list3);
 
-	DestroyList(&list1);
-	DestroyList(&list2);
-	DestroyList(&list3);
+	DestroySeqList(&list1);
+	DestroySeqList(&list2);
+	DestroySeqList(&list3);
 }
 
 void FindMedianOfTwoSeqListTest(){
 	SeqList list1;
-	InitList(&list1);
-	ListInsert(&list1,0,19);
-	ListInsert(&list1,0,17);
-	ListInsert(&list1,0,15);
-	ListInsert(&list1,0,13);
-	ListInsert(&list1,0,11);
+	InitSeqList(&list1);
+	SeqListInsert(&list1,0,19);
+	SeqListInsert(&list1,0,17);
+	SeqListInsert(&list1,0,15);
+	SeqListInsert(&list1,0,13);
+	SeqListInsert(&list1,0,11);
 	SeqList list2;
-	InitList(&list2);
-	ListInsert(&list2,0,20);
-	ListInsert(&list2,0,8);
-	ListInsert(&list2,0,6);
-	ListInsert(&list2,0,4);
-	ListInsert(&list2,0,2);
+	InitSeqList(&list2);
+	SeqListInsert(&list2,0,20);
+	SeqListInsert(&list2,0,8);
+	SeqListInsert(&list2,0,6);
+	SeqListInsert(&list2,0,4);
+	SeqListInsert(&list2,0,2);
 	ElemType median = FindMedianOfTwoSeqList(&list1, &list2);
-	PrintList(&list1);
-	PrintList(&list2);
+	PrintSeqList(&list1);
+	PrintSeqList(&list2);
 	printf("Median is %d\n",median);
 
-	DestroyList(&list1);
-	DestroyList(&list2);
+	DestroySeqList(&list1);
+	DestroySeqList(&list2);
 }
 void MajorityTest(){
 	SeqList list1;
-	InitList(&list1);
-	ListInsert(&list1,0,13);
-	ListInsert(&list1,0,13);
-	ListInsert(&list1,0,13);
-	ListInsert(&list1,0,11);
-	ListInsert(&list1,0,11);
-	PrintList(&list1);
+	InitSeqList(&list1);
+	SeqListInsert(&list1,0,13);
+	SeqListInsert(&list1,0,13);
+	SeqListInsert(&list1,0,13);
+	SeqListInsert(&list1,0,11);
+	SeqListInsert(&list1,0,11);
+	PrintSeqList(&list1);
 	ElemType majority = Majority(&list1);
 	printf("%d\n",majority);
-	DestroyList(&list1);
+	DestroySeqList(&list1);
 }
 
 void MinPosNonExistConstTest(){
 	SeqList list1;
-	InitList(&list1);
-	ListInsert(&list1,0,1);
-	ListInsert(&list1,0,3);
-	ListInsert(&list1,0,4);
-	ListInsert(&list1,0,5);
-	ListInsert(&list1,0,7);
-	PrintList(&list1);
+	InitSeqList(&list1);
+	SeqListInsert(&list1,0,1);
+	SeqListInsert(&list1,0,3);
+	SeqListInsert(&list1,0,4);
+	SeqListInsert(&list1,0,5);
+	SeqListInsert(&list1,0,7);
+	PrintSeqList(&list1);
 	ElemType min = MinPosNonExistConst(&list1);
 	printf("%d\n",min);
-	DestroyList(&list1);
+	DestroySeqList(&list1);
 }
 
 void MinTripDistanceTest(){
 	SeqList list1;
-	InitList(&list1);
-	ListInsert(&list1,0,9);
-	ListInsert(&list1,0,0);
-	ListInsert(&list1,0,-1);
+	InitSeqList(&list1);
+	SeqListInsert(&list1,0,9);
+	SeqListInsert(&list1,0,0);
+	SeqListInsert(&list1,0,-1);
 	SeqList list2;
-	InitList(&list2);
-	ListInsert(&list2,0,113);
-	ListInsert(&list2,0,10);
-	ListInsert(&list2,0,-10);
-	ListInsert(&list2,0,-25);
+	InitSeqList(&list2);
+	SeqListInsert(&list2,0,113);
+	SeqListInsert(&list2,0,10);
+	SeqListInsert(&list2,0,-10);
+	SeqListInsert(&list2,0,-25);
 	SeqList list3;
-	InitList(&list3);
-	ListInsert(&list3,0,41);
-	ListInsert(&list3,0,30);
-	ListInsert(&list3,0,17);
-	ListInsert(&list3,0,9);
-	ListInsert(&list3,0,2);
-	PrintList(&list1);
-	PrintList(&list2);
-	PrintList(&list3);
+	InitSeqList(&list3);
+	SeqListInsert(&list3,0,41);
+	SeqListInsert(&list3,0,30);
+	SeqListInsert(&list3,0,17);
+	SeqListInsert(&list3,0,9);
+	SeqListInsert(&list3,0,2);
+	PrintSeqList(&list1);
+	PrintSeqList(&list2);
+	PrintSeqList(&list3);
 	int min_distance = MinTripDistance(&list1, &list2, &list3);
 	printf("%d\n",min_distance);
-	DestroyList(&list1);
-	DestroyList(&list2);
-	DestroyList(&list3);
+	DestroySeqList(&list1);
+	DestroySeqList(&list2);
+	DestroySeqList(&list3);
 }

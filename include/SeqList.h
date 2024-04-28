@@ -9,14 +9,15 @@ typedef struct {
   int MaxSize, Length;
 } SeqList;
 
-void InitList(SeqList *L);
-int Length(SeqList *L);
-int LocateElem(SeqList *L, ElemType e);
-bool ListInsert(SeqList *L, int i, ElemType e);
-bool ListDelete(SeqList *L, int i, ElemType *e);
-void PrintList(SeqList *L);
-bool Empty(SeqList *L);
-void DestroyList(SeqList *L);
+void InitSeqList(SeqList *L);
+int SeqListLength(SeqList *L);
+int SeqLocateElem(SeqList *L, ElemType e);
+bool SeqListInsert(SeqList *L, int i, ElemType e);
+bool SeqListDelete(SeqList *L, int i, ElemType *e);
+void PrintSeqList(SeqList *L);
+bool SeqListEmpty(SeqList *L);
+void DestroySeqList(SeqList *L);
+void SeqListPush(SeqList *L,ElemType e);
 /**
  * @brief 找到顺序表中的元素e
  * 

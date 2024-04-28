@@ -5,13 +5,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 // 在本实现中，认为i为数组下标，顺序表位置应为i+1
-void InitList(SeqList *L) {
+void InitSeqList(SeqList *L) {
   L->Length = 0;
   L->data = malloc(sizeof(ElemType) * InitSize);
   L->MaxSize = InitSize;
 }
-int Length(SeqList *L) { return L->Length; };
-ElemType LocateElem(SeqList *L, ElemType e) {
+int SeqListLength(SeqList *L) { return L->Length; };
+ElemType SeqListLocateElem(SeqList *L, ElemType e) {
   for (int i = 0; i < L->Length; i++) {
     if (L->data[i] == e) {
       return i;
@@ -20,7 +20,7 @@ ElemType LocateElem(SeqList *L, ElemType e) {
   return -1;
 };
 
-bool ListInsert(SeqList *L, int i, ElemType e) {
+bool SeqListInsert(SeqList *L, int i, ElemType e) {
   if (i < 0 || i > L->Length) {
     return false;
   }
@@ -34,7 +34,7 @@ bool ListInsert(SeqList *L, int i, ElemType e) {
   L->Length++;
   return true;
 }
-bool ListDelete(SeqList *L, int i, ElemType *e) {
+bool SeqListDelete(SeqList *L, int i, ElemType *e) {
   if (i < 0 || i >= L->Length) {
     return false;
   }
@@ -45,15 +45,15 @@ bool ListDelete(SeqList *L, int i, ElemType *e) {
   L->Length--;
   return true;
 }
-void PrintList(SeqList *L) {
+void PrintSeqList(SeqList *L) {
   for (int i = 0; i < L->Length; i++) {
     printf("%d\t", L->data[i]);
   }
   printf("\n");
 }
-bool Empty(SeqList *L) { return L->Length == 0; }
+bool SeqListEmpty(SeqList *L) { return L->Length == 0; }
 
-void DestroyList(SeqList *L) {
+void DestroySeqList(SeqList *L) {
   free(L->data);
   L->MaxSize = 0;
   L->Length = 0;
@@ -75,6 +75,43 @@ bool BinarySearch(SeqList *L, ElemType e, int *index) {
   *index = l;
   return false;
 }
+/**
+ * @brief 当L->Length==L->MaxSize时调用
+ * 
+ * @param L 
+ */
+
+static void increase(SeqList *L){
+   L->MaxSize *=2;
+   ElemType *n_data = malloc(sizeof(L->MaxSize));
+
+   for (int i = 0; i<L->Length; i++) {
+     n_data[i] = L->data[i];
+   }
+   free(L->data);
+   L->data = n_data;
+}
+//当L->Length<L->MaxSize/4时调用
+
+static void shrink (SeqList *L){
+   L->MaxSize /=2;
+   ElemType *n_data = malloc(sizeof(L->MaxSize));
+
+   for (int i = 0; i<L->Length; i++) {
+     n_data[i] = L->data[i];
+   }
+   free(L->data);
+   L->data = n_data;
+}
+
+void SeqListPush(SeqList *L,ElemType e){
+  if (L->Length==L->MaxSize) {
+    increase(L);
+  }
+  L->data[L->Length]=e;
+  L->Length++;
+}
+
 
 void ReverseRange(SeqList *L, int m, int n) {
   for (int i = m, j = n; i < j; i++, j--) {

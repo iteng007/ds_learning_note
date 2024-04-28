@@ -30,7 +30,7 @@ typedef struct LinkList{
  * 
  * @param L 链表指针
  */
-void InitList(LinkList *L);
+void InitLinkList(LinkList *L);
 
 /**
  * @brief 返回链表长
@@ -38,7 +38,7 @@ void InitList(LinkList *L);
  * @param L 
  * @return int 链表长
  */
-int Length(LinkList *L);
+int LinkListLength(LinkList *L);
 
 /**
  * @brief 返回第i个链表节点
@@ -46,7 +46,7 @@ int Length(LinkList *L);
  * @param L 
  * @return LNode* 
  */
-LNode * GetELem(LinkList *L,int i);
+LNode * LinkListGetELem(LinkList *L,int i);
 
 /**
  * @brief 按照查找链表节点
@@ -55,9 +55,9 @@ LNode * GetELem(LinkList *L,int i);
  * @param e 
  * @return LNode* 存在返回对应节点，否则NULL
  */
-LNode * LocateElem(LinkList *L,ElemType e);
+LNode * LinkListLocateElem(LinkList *L,ElemType e);
 
-
+void PrintLinkList(LinkList *L);
 /**
  * @brief 将元素e插入链表
  * 
@@ -67,7 +67,7 @@ LNode * LocateElem(LinkList *L,ElemType e);
  * @return true 成功插入
  * @return false i非法
  */
-bool ListInsert(LinkList *L,int i,ElemType e);
+bool LinkListInsert(LinkList *L,int i,ElemType e);
 
 /**
  * @brief 删除链表中第i个节点
@@ -78,7 +78,7 @@ bool ListInsert(LinkList *L,int i,ElemType e);
  * @return true 成功删除节点，并将被删除节点所存值放入e
  * @return false 没有该节点
  */
-bool ListDelete(LinkList *L,int i,ElemType *e);
+bool LinkListDelete(LinkList *L,int i,ElemType *e);
 
 /**
  * @brief 往链表队尾插入元素e
@@ -86,23 +86,22 @@ bool ListDelete(LinkList *L,int i,ElemType *e);
  * @param L 
  * @param e 
  */
-void ListPush(LinkList *L,ElemType e);
+void LinkListPush(LinkList *L,ElemType e);
 /**
  * @brief 打印链表内容
  * 
  * @param L 
  */
-void PrintList(LinkList *L);
 
 
-void PrintListWithFakeHead(LinkList *L);
+void PrintLinkListWithFakeHead(LinkList *L);
 /**
  * @brief 单链表的析构函数
  * 
  * @param L 
  */
 
-void DestroyList(LinkList *L);
+void DestroyLinkList(LinkList *L);
 
 void DeleteNodeWithValueX(LinkList *L,ElemType X);
 
@@ -118,5 +117,17 @@ void DelteMinValueNode(LinkList *L);
  * 
  * @param L 带头节点的链表。 
  */
-void ReverseList(LinkList *L);
+void ReverseLinkList(LinkList *L);
+
+void LinkListDeleteRange(LinkList *L,ElemType start,ElemType end);
+
+/**
+ * @brief 返回两个链表的公共节点的数组，LNode *的内存应由caller释放。
+ * 
+ * @param L 
+ * @param R 
+ * @param len 该数组的长度
+ * @return LNode** 
+ */
+LNode ** CommonLNode(LinkList *L,LinkList *R,int *len);
 #endif
