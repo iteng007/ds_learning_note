@@ -13,6 +13,8 @@ void LinkListDeleteRangeTest();
 void  CommonLNodeTest();
 void LinkListDivideTest();
 void  LinkListDeDupTest();
+void CreateLinkListFromCommonNodeValTest();
+void LinkListIntersectionTest();
 int main(){
 	// ListPushTest();
 	// void GetELemTest();
@@ -25,7 +27,9 @@ int main(){
 	// LinkListDeleteRangeTest();
 	// CommonLNodeTest();
 	// LinkListDivideTest();
-	LinkListDeDupTest();
+	// LinkListDeDupTest();
+	// CreateLinkListFromCommonNodeValTest();
+	LinkListIntersectionTest();
 }
 void ListPushTest(){
 	LinkList list;
@@ -230,4 +234,44 @@ void LinkListDeDupTest(){
 	PrintLinkListWithOutFakeHead(&list);
 	LinkListStatus(&list);
 	DestroyLinkList(&list);
+}
+void CreateLinkListFromCommonNodeValTest(){
+	LinkList list1;
+	InitLinkList(&list1);
+	LinkList list2;
+	InitLinkList(&list2);
+	for (int i = 15 ; i>0; i--) {
+		LinkListInsert(&list1,0,i);
+	}
+	for (int i = 15 ; i>0; i--) {
+		LinkListInsert(&list2,0,i*2);
+	}
+	PrintLinkListWithOutFakeHead(&list1);
+	PrintLinkListWithOutFakeHead(&list2);
+	LinkList * new_list = CreateLinkListFromCommonNodeVal(&list1, &list2);
+	PrintLinkListWithOutFakeHead(new_list);	
+	DestroyLinkList(new_list);
+	free(new_list);
+	DestroyLinkList(&list1);
+	DestroyLinkList(&list2);
+}
+
+
+void LinkListIntersectionTest(){
+	LinkList list1;
+	InitLinkList(&list1);
+	LinkList list2;
+	InitLinkList(&list2);
+	for (int i = 15 ; i>0; i--) {
+		LinkListInsert(&list1,0,i);
+	}
+	for (int i = 15 ; i>0; i--) {
+		LinkListInsert(&list2,0,i*2);
+	}
+	PrintLinkListWithOutFakeHead(&list1);
+	PrintLinkListWithOutFakeHead(&list2);
+	LinkListIntersection(&list1, &list2);
+	PrintLinkListWithOutFakeHead(&list1);
+	DestroyLinkList(&list1);
+	DestroyLinkList(&list2);
 }

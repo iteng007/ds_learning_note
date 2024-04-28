@@ -142,4 +142,13 @@ void LinkListDivide(LinkList *L,LinkList *R);
 void LinkListStatus(LinkList *L);
 
 void LinkListDeDup(LinkList *L);
+
+LinkList *CreateLinkListFromCommonNodeVal(LinkList *L,LinkList *R);
+/**
+ * @brief 找出两个链表的值的交集，并放置在L1中，其余节点会被释放。
+ * 
+ * @param L 
+ * @param R 
+ */
+void LinkListIntersection(LinkList *L,LinkList *R);
 #endif

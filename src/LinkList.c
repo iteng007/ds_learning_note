@@ -303,34 +303,87 @@ void LinkListDivide(LinkList *L, LinkList *R) {
     walk = walk->next;
   }
 }
-void LinkListStatus(LinkList *L){
+void LinkListStatus(LinkList *L) {
   printf("Without fake head:\n");
   PrintLinkListWithOutFakeHead(L);
   printf("With fake head:\n");
   PrintLinkList(L);
-  printf("Fake head:\t%d\n",L->head->data);
+  printf("Fake head:\t%d\n", L->head->data);
   if (L->head->next) {
-  printf("Head:\t%d\n",L->head->next->data);
+    printf("Head:\t%d\n", L->head->next->data);
   }
-  printf("Tail:\t%d\n",L->tail->data);
+  printf("Tail:\t%d\n", L->tail->data);
 }
 
-void LinkListDeDup(LinkList *L){
-  LNode * walk = L->head;
-  LNode * temp;
-  LNode * to_free;
+void LinkListDeDup(LinkList *L) {
+  LNode *walk = L->head;
+  LNode *temp;
+  LNode *to_free;
   while (walk->next) {
-     temp = walk->next->next;
-     while (temp&&walk->next->data == temp->data) {
-        to_free = temp;
-        if (to_free->next==NULL) {
-          L->tail = walk->next;
-        }
-        temp = temp->next;
-        L->length--;
-        free(to_free);
-     }
-     walk->next->next = temp;
-     walk = walk->next;
+    temp = walk->next->next;
+    while (temp && walk->next->data == temp->data) {
+      to_free = temp;
+      if (to_free->next == NULL) {
+        L->tail = walk->next;
+      }
+      temp = temp->next;
+      L->length--;
+      free(to_free);
+    }
+    walk->next->next = temp;
+    walk = walk->next;
   }
 }
+
+LinkList *CreateLinkListFromCommonNodeVal(LinkList *L, LinkList *R) {
+  LinkList *result = malloc(sizeof(LinkList));
+  InitLinkList(result);
+  LinkListPush(result, -1); // 头节点；
+  LNode *walkl = L->head;
+  LNode *walkr = R->head;
+  while (walkl->next && walkr->next) {
+    if (walkl->next->data == walkr->next->data) {
+      LinkListPush(result, walkl->next->data);
+      walkl = walkl->next;
+      walkr = walkr->next;
+    } else if (walkl->next->data < walkr->next->data) {
+      walkl = walkl->next;
+    } else {
+      walkr = walkr->next;
+    }
+  }
+  return result;
+}
+
+void LinkListIntersection(LinkList *L, LinkList *R) {
+  LNode *walkl = L->head;
+  LNode *walkr = R->head;
+  LNode *arr[L->length];
+  LNode *to_free[L->length];
+  int index = 0;
+  int index_free = 0;
+  while (walkl && walkl->next && walkr && walkr->next) {
+    if (walkl->next->data == walkr->next->data) {
+      walkl = walkl->next;
+      walkr = walkr->next;
+      arr[index++] = walkl;
+    } else {
+      if (walkl->next->data < walkr->next->data) {
+        walkl = walkl->next;
+        to_free[index_free++] = walkl;
+      } else {
+        walkr = walkr->next;
+      }
+    }
+  }
+  LNode *walk = L->head;
+  for (int i = 0; i < index; i++) {
+    walk->next = arr[i];
+    walk = walk->next;
+  }
+  walk->next = NULL;
+  for (int i = 0; i < index_free; i++) {
+    free(to_free[i]);
+  }
+  L->length = index;
+};
