@@ -254,7 +254,6 @@ LNode **CommonLNode(LinkList *L, LinkList *R, int *len) {
 	printf("\n");
 	for (int i = 0; walkr; i++,walkr =walkr->next) {
 		nodesr[i]  =walkr;
-		// printf("%p\t",walkr);
 	}
 	QuickSort((void**)nodesl, L->length-1, (CompareFunc)LNodeCompare, (SwapFunc)LNodeSwap);
 	QuickSort((void**)nodesr, R->length-1, (CompareFunc)LNodeCompare, (SwapFunc)LNodeSwap);
