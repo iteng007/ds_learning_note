@@ -94,6 +94,8 @@ void ListPush(LinkList *L,ElemType e);
  */
 void PrintList(LinkList *L);
 
+
+void PrintListWithFakeHead(LinkList *L);
 /**
  * @brief 单链表的析构函数
  * 
@@ -101,4 +103,20 @@ void PrintList(LinkList *L);
  */
 
 void DestroyList(LinkList *L);
+
+void DeleteNodeWithValueX(LinkList *L,ElemType X);
+
+/**
+ * @brief 
+ * 
+ * @param L 带头节点的链表。 
+ */
+void DelteMinValueNode(LinkList *L);
+
+/**
+ * @brief 原地逆置
+ * 
+ * @param L 带头节点的链表。 
+ */
+void ReverseList(LinkList *L);
 #endif

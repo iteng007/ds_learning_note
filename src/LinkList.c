@@ -1,4 +1,5 @@
 #include "../include/LinkList.h"
+#include <limits.h>
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdio.h>
@@ -126,6 +127,15 @@ void PrintList(LinkList *L){
 	printf("\n");
 }
 
+void PrintListWithFakeHead(LinkList *L){
+	LNode * walk = L->head->next;
+	while (walk) {
+		printf("%d\t",walk->data);
+		walk = walk->next;
+	}
+	printf("\n");
+}
+
 void DestroyList(LinkList *L){
 	LNode * walk = L->head;
 	LNode * walk_next = walk->next;
@@ -139,4 +149,63 @@ void DestroyList(LinkList *L){
 	L->head = NULL;
 	L->tail = NULL;
 	L->length  = 0;
+}
+/**
+ * @brief p43.01 在带头结点的单链表L中，删除所有值为x的结点，并释放其空间，假设值为x的结点不唯一
+ * 
+ * @param L 带头节点的单链表 
+ */
+void DeleteNodeWithValueX(LinkList *L,ElemType X){
+	LNode * walk = L->head;
+	LNode * temp;
+	while (walk) {
+		if (walk->next&&walk->next->data==X) {
+			temp = walk->next;
+			walk->next = temp->next;
+			free(temp);
+			continue;
+		}
+		walk = walk->next;
+	}
+}
+
+void DelteMinValueNode(LinkList *L){
+	LNode *walk = L->head;
+	ElemType min = INT_MAX;
+	LNode *min_node_prev = NULL;
+	while (walk->next) {
+		if (walk->next->data<min) {
+			min_node_prev  = walk;
+			min = walk->next->data;
+		}
+		walk = walk->next;
+	}
+	if (min_node_prev) {
+		LNode * to_free =  min_node_prev->next;
+		min_node_prev->next = min_node_prev->next->next;
+		free(to_free);
+	}
+}
+
+void ReverseList(LinkList *L){
+	//原头结点指针域指向原链表尾。
+	//其余节点指针域指向原直接前驱。
+	//首节点指针域为NULL
+	LNode * prev = L->head;
+	LNode * walk = L->head->next;
+	LNode * temp;
+	LNode * n_tail = L->head->next;
+	while (walk) {
+		temp = walk->next;
+		if (prev==L->head) {
+			walk->next = NULL;
+		}else {
+		    walk->next = prev;
+		}
+		prev = walk;
+		walk = temp;
+	}
+	LNode * o_tail = L->tail;
+	L->tail = n_tail;
+	L->head->next = o_tail;
 }

@@ -5,12 +5,18 @@ void GetELemTest();
 void LocateElemTest();
 void ListInsertTest();
 void ListDeleteTest();
+void DeleteNodeWithValueXTest();
+void DelteMinValueNodeTest();
+void ReverseListTest();
 int main(){
 	// ListPushTest();
 	// void GetELemTest();
 	// LocateElemTest();
 	// ListInsertTest();
 	// ListDeleteTest();
+    // DeleteNodeWithValueXTest();
+	// DelteMinValueNodeTest();
+	ReverseListTest();
 }
 void ListPushTest(){
 	LinkList list;
@@ -105,5 +111,40 @@ void ListDeleteTest(){
 	printf("Deleted item is %d\n",d);
 	PrintList(&list);
 	printf("List length is %d\n",list.length);
+	DestroyList(&list);
+}
+
+void DeleteNodeWithValueXTest(){
+	LinkList list;
+	InitList(&list);
+	for (int i = 0 ; i<15; i++) {
+		ListInsert(&list,i,i);
+	}
+	PrintListWithFakeHead(&list);
+	DeleteNodeWithValueX(&list,1);
+	PrintListWithFakeHead(&list);
+	DestroyList(&list);
+}
+
+void DelteMinValueNodeTest(){
+	LinkList list;
+	InitList(&list);
+	for (int i = 15 ; i>0; i--) {
+		ListInsert(&list,0,i);
+	}
+	PrintListWithFakeHead(&list);
+	DelteMinValueNode(&list);
+	PrintListWithFakeHead(&list);
+	DestroyList(&list);
+}
+void ReverseListTest(){
+	LinkList list;
+	InitList(&list);
+	for (int i = 15 ; i>0; i--) {
+		ListInsert(&list,0,i);
+	}
+	PrintListWithFakeHead(&list);
+	ReverseList(&list);
+	PrintListWithFakeHead(&list);
 	DestroyList(&list);
 }
