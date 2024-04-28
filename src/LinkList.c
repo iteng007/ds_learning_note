@@ -125,7 +125,7 @@ void PrintLinkList(LinkList *L) {
   printf("\n");
 }
 
-void PrintLinkListWithFakeHead(LinkList *L) {
+void PrintLinkListWithOutFakeHead(LinkList *L) {
   LNode *walk = L->head->next;
   while (walk) {
     printf("%d\t", walk->data);
@@ -223,39 +223,114 @@ void LinkListDeleteRange(LinkList *L, ElemType start, ElemType end) {
   }
 }
 
-
-int LNodeCompare(LNode *L,LNode *R){
-	if (L<R) {
-		return -1;
-	}else if (L==R) {
-		return 0;
-	}
-	return 1;
+int LNodeCompare(LNode *L, LNode *R) {
+  if (L < R) {
+    return -1;
+  } else if (L == R) {
+    return 0;
+  }
+  return 1;
 }
 
-void LNodeSwap(LNode **L,LNode **R){
-	LNode *temp = *L;
-	*L = *R;
-	*R = temp;
+void LNodeSwap(LNode **L, LNode **R) {
+  LNode *temp = *L;
+  *L = *R;
+  *R = temp;
 }
 
 // 最简单粗暴：哈希表，但我现在还没实现。
 // 或者存数组，数组按链表节点地址排序。
 // 然后就转化为找两个数组相同元素。
 LNode **CommonLNode(LinkList *L, LinkList *R, int *len) {
-	LNode * nodesl[L->length-1];//去除头结点。
-	LNode * nodesr[R->length-1];
-	LNode * walkl = L->head->next;
-	LNode * walkr = R->head->next;
-	for (int i = 0; walkl; i++,walkl =walkl->next) {
-		nodesl[i]  =walkl;
-		printf("%p\t",walkl);
-	}
-	printf("\n");
-	for (int i = 0; walkr; i++,walkr =walkr->next) {
-		nodesr[i]  =walkr;
-	}
-	QuickSort((void**)nodesl, L->length-1, (CompareFunc)LNodeCompare, (SwapFunc)LNodeSwap);
-	QuickSort((void**)nodesr, R->length-1, (CompareFunc)LNodeCompare, (SwapFunc)LNodeSwap);
-	return NULL;
+  LNode *nodesl[L->length - 1]; // 去除头结点。
+  LNode *nodesr[R->length - 1];
+  LNode *walkl = L->head->next;
+  LNode *walkr = R->head->next;
+  for (int i = 0; walkl; i++, walkl = walkl->next) {
+    nodesl[i] = walkl;
+  }
+  printf("\n");
+  for (int i = 0; walkr; i++, walkr = walkr->next) {
+    nodesr[i] = walkr;
+  }
+  QuickSort((void **)nodesl, L->length - 1, (CompareFunc)LNodeCompare,
+            (SwapFunc)LNodeSwap);
+  QuickSort((void **)nodesr, R->length - 1, (CompareFunc)LNodeCompare,
+            (SwapFunc)LNodeSwap);
+  int lenth = L->length > R->length ? L->length : R->length;
+  LNode **result = malloc(sizeof(LNode *) * lenth);
+
+  int i = 0, j = 0;
+  int output_index = 0;
+  while (i < L->length - 1 && j < R->length - 1) {
+    if (nodesl[i] == nodesr[j]) {
+      result[output_index++] = nodesl[i];
+      i++;
+      j++;
+    } else if (nodesl[i] < nodesr[j]) {
+      i++;
+    } else {
+      j++;
+    }
+  }
+  *len = output_index;
+  return result;
+}
+
+void LinkListDivide(LinkList *L, LinkList *R) {
+  // i为偶数放入L
+  // i为奇数放入R
+  // 即将奇数R的从L中删除然后链接。
+  // 垃圾头节点
+  LinkListPush(R, -1);
+  LNode *walk = L->head->next;
+  LNode *temp;
+  while (walk->next) {
+    temp = walk->next;
+    if (!temp->next) {
+      L->tail = walk;
+    }
+    walk->next = walk->next->next;
+    // 删除
+    // 放入R的末尾
+    R->tail->next = temp;
+    R->tail = temp;
+    R->length++;
+    L->length--;
+    if (!walk->next) {
+      break;
+    }
+    walk = walk->next;
+  }
+}
+void LinkListStatus(LinkList *L){
+  printf("Without fake head:\n");
+  PrintLinkListWithOutFakeHead(L);
+  printf("With fake head:\n");
+  PrintLinkList(L);
+  printf("Fake head:\t%d\n",L->head->data);
+  if (L->head->next) {
+  printf("Head:\t%d\n",L->head->next->data);
+  }
+  printf("Tail:\t%d\n",L->tail->data);
+}
+
+void LinkListDeDup(LinkList *L){
+  LNode * walk = L->head;
+  LNode * temp;
+  LNode * to_free;
+  while (walk->next) {
+     temp = walk->next->next;
+     while (temp&&walk->next->data == temp->data) {
+        to_free = temp;
+        if (to_free->next==NULL) {
+          L->tail = walk->next;
+        }
+        temp = temp->next;
+        L->length--;
+        free(to_free);
+     }
+     walk->next->next = temp;
+     walk = walk->next;
+  }
 }

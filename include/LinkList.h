@@ -94,7 +94,7 @@ void LinkListPush(LinkList *L,ElemType e);
  */
 
 
-void PrintLinkListWithFakeHead(LinkList *L);
+void PrintLinkListWithOutFakeHead(LinkList *L);
 /**
  * @brief 单链表的析构函数
  * 
@@ -122,7 +122,7 @@ void ReverseLinkList(LinkList *L);
 void LinkListDeleteRange(LinkList *L,ElemType start,ElemType end);
 
 /**
- * @brief 返回两个链表的公共节点的数组，LNode *的内存应由caller释放。
+ * @brief p43.05返回两个链表的公共节点的数组，LNode *的内存应由caller释放。
  * 
  * @param L 
  * @param R 
@@ -130,4 +130,16 @@ void LinkListDeleteRange(LinkList *L,ElemType start,ElemType end);
  * @return LNode** 
  */
 LNode ** CommonLNode(LinkList *L,LinkList *R,int *len);
+
+/**
+ * @brief 
+ * 
+ * @param L 
+ * @param R 
+ */
+void LinkListDivide(LinkList *L,LinkList *R);
+
+void LinkListStatus(LinkList *L);
+
+void LinkListDeDup(LinkList *L);
 #endif

@@ -1,5 +1,6 @@
 #include "../include/LinkList.h"
 #include <stdio.h>
+#include <stdlib.h>
 void ListPushTest();
 void GetELemTest();
 void LocateElemTest();
@@ -10,6 +11,8 @@ void DelteMinValueNodeTest();
 void ReverseLinkListTest();
 void LinkListDeleteRangeTest();
 void  CommonLNodeTest();
+void LinkListDivideTest();
+void  LinkListDeDupTest();
 int main(){
 	// ListPushTest();
 	// void GetELemTest();
@@ -20,7 +23,9 @@ int main(){
 	// DelteMinValueNodeTest();
 	// ReverseLinkListTest();
 	// LinkListDeleteRangeTest();
-	CommonLNodeTest();
+	// CommonLNodeTest();
+	// LinkListDivideTest();
+	LinkListDeDupTest();
 }
 void ListPushTest(){
 	LinkList list;
@@ -124,9 +129,9 @@ void DeleteNodeWithValueXTest(){
 	for (int i = 0 ; i<15; i++) {
 		LinkListInsert(&list,i,i);
 	}
-	PrintLinkListWithFakeHead(&list);
+	PrintLinkListWithOutFakeHead(&list);
 	DeleteNodeWithValueX(&list,1);
-	PrintLinkListWithFakeHead(&list);
+	PrintLinkListWithOutFakeHead(&list);
 	DestroyLinkList(&list);
 }
 
@@ -136,9 +141,9 @@ void DelteMinValueNodeTest(){
 	for (int i = 15 ; i>0; i--) {
 		LinkListInsert(&list,0,i);
 	}
-	PrintLinkListWithFakeHead(&list);
+	PrintLinkListWithOutFakeHead(&list);
 	DelteMinValueNode(&list);
-	PrintLinkListWithFakeHead(&list);
+	PrintLinkListWithOutFakeHead(&list);
 	DestroyLinkList(&list);
 }
 void ReverseLinkListTest(){
@@ -147,9 +152,9 @@ void ReverseLinkListTest(){
 	for (int i = 15 ; i>0; i--) {
 		LinkListInsert(&list,0,i);
 	}
-	PrintLinkListWithFakeHead(&list);
+	PrintLinkListWithOutFakeHead(&list);
 	ReverseLinkList(&list);
-	PrintLinkListWithFakeHead(&list);
+	PrintLinkListWithOutFakeHead(&list);
 	DestroyLinkList(&list);
 }
 
@@ -159,9 +164,9 @@ void LinkListDeleteRangeTest(){
 	for (int i = 15 ; i>0; i--) {
 		LinkListInsert(&list,0,i);
 	}
-	PrintLinkListWithFakeHead(&list);
+	PrintLinkListWithOutFakeHead(&list);
 	LinkListDeleteRange(&list,7,13);
-	PrintLinkListWithFakeHead(&list);
+	PrintLinkListWithOutFakeHead(&list);
 	DestroyLinkList(&list);
 }
 
@@ -177,10 +182,52 @@ void CommonLNodeTest(){
 	for (int i = 15 ; i>0; i--) {
 		LinkListInsert(&list2,0,i+1);
 	}
-	// PrintLinkListWithFakeHead(&list1);
-	// PrintLinkListWithFakeHead(&list2);
+	PrintLinkListWithOutFakeHead(&list1);
+	PrintLinkListWithOutFakeHead(&list2);
+	list1.tail->next = list2.head->next;
+	list1.tail = list2.tail;
+	list1.length+=(list2.length-1);
 	int len;
-	CommonLNode(&list1, &list2, &len);
+	LNode ** result = CommonLNode(&list1, &list2, &len);
+	for (int i = 0; i<len; i++) {
+		printf("%d\t",result[i]->data);
+	}
+	printf("\n");
+	free(result);
 	DestroyLinkList(&list1);
+	free(list2.head);
+}
+
+
+void LinkListDivideTest(){
+	LinkList list;
+	InitLinkList(&list);
+	for (int i = 15 ; i>0; i--) {
+		LinkListInsert(&list,0,i);
+	}
+	PrintLinkListWithOutFakeHead(&list);
+	LinkList list2;
+	InitLinkList(&list2);
+	LinkListDivide(&list, &list2);
+	PrintLinkListWithOutFakeHead(&list);
+	PrintLinkListWithOutFakeHead(&list2);
+	DestroyLinkList(&list);
 	DestroyLinkList(&list2);
+}
+
+void LinkListDeDupTest(){
+	LinkList list;
+	InitLinkList(&list);
+	LinkListInsert(&list, 0, -1);//头节点
+	for (int i = 0 ; i<5; i++) {
+		LinkListPush(&list, 1);
+	}
+	for (int i = 0; i<3; i++) {
+		LinkListPush(&list, 2);
+	}
+	PrintLinkListWithOutFakeHead(&list);
+	LinkListDeDup(&list);
+	PrintLinkListWithOutFakeHead(&list);
+	LinkListStatus(&list);
+	DestroyLinkList(&list);
 }
