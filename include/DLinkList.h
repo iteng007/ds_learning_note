@@ -14,6 +14,10 @@ typedef struct DNode{
  */
 void InitDNode(DNode *node,ElemType e);
 
+/**
+ * @brief 双向循环链表
+ * 
+ */
 typedef struct DLinkList{
 	struct DNode * head;
 	struct DNode * tail;
@@ -62,4 +66,14 @@ void DestroyDLinkList(DLinkList *L);
  * @param L 
  */
 void PrintRDLinkList(DLinkList *L);
+void PrintDLinkListWithoutHead(DLinkList *L);
+void DLinkListPush(DLinkList *L,ElemType e);
+/**
+ * @brief 带头结点，即认为第一个头是假头。
+ * 
+ * @param L 
+ * @return true 
+ * @return false 
+ */
+bool IsDLinkListSymmetrical(DLinkList * L);
 #endif

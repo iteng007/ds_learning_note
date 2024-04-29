@@ -8,7 +8,7 @@
 			"name": "Debug",
 			"type": "gdb",
 			"request": "launch",
-			"target": "test/LinkList",
+			"target": "test/DLinkList",
 			"cwd": "${workspaceRoot}",
 			"valuesFormatting": "parseText"
 		}

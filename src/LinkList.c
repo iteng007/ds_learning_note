@@ -387,3 +387,34 @@ void LinkListIntersection(LinkList *L, LinkList *R) {
   }
   L->length = index;
 };
+
+bool IsSubLinkListVal(LinkList *L,LinkList *R){
+   LNode * walkl =  L->head;
+   LNode * walkr =  R->head;
+   LNode *arr[L->length];
+   int index = 0;
+   while (walkl->next&&walkr->next) {
+        if (walkl->next->data==walkr->next->data) {
+            walkl =walkl->next;
+            walkr = walkr->next;
+            arr[index++] = walkr;
+        }else if (walkl->next->data<walkr->next->data) {
+            walkl = walkl->next;
+        }else {
+            walkr = walkr->next;
+        }
+   }
+   walkr = R->head;
+   int i = 0;
+   while (walkr->next&&i<index) {
+      if (walkr->next!=arr[i]) {
+        return false;
+      }
+      walkr = walkr->next;
+      i++;
+   }
+   if (!(walkr&&!walkr->next&&i==index)) {
+    return false;
+   }
+   return true;
+}

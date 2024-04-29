@@ -25,6 +25,16 @@ typedef struct LinkList{
 	LNode * tail;
 	int length;
 }LinkList;
+
+/**
+ * @brief 循环单链表
+ * 
+ */
+typedef struct CirLinkList{
+	LNode * head;
+	LNode * tail;
+	int length;
+}CirLinkList;
 /**
  * @brief 初始化链表
  * 
@@ -151,4 +161,11 @@ LinkList *CreateLinkListFromCommonNodeVal(LinkList *L,LinkList *R);
  * @param R 
  */
 void LinkListIntersection(LinkList *L,LinkList *R);
+/**
+ * @brief 根据值判断R是否为L的子序列
+ * 
+ * @param L 
+ * @param R 
+ */
+bool IsSubLinkListVal(LinkList *L,LinkList *R);
 #endif

@@ -73,6 +73,17 @@ void PrintDLinkList(DLinkList *L){
 	printf("\n");
 }
 
+void PrintDLinkListWithoutHead(DLinkList *L){
+	int length = L->length;
+	DNode *walk = L->head->next;
+	while (length>1) {
+		printf("%d\t",walk->data);
+		walk =walk->next;
+		length--;
+	}
+	printf("\n");
+}
+
 void PrintRDLinkList(DLinkList *L){
 	int length = L->length;
 	DNode *walk = L->tail;
@@ -97,4 +108,35 @@ void DestroyDLinkList(DLinkList *L){
 	L->head = NULL;
 	L->tail = NULL;
 	L->length = 0;
+}
+
+void DLinkListPush(DLinkList *L,ElemType e){
+	L->length++;
+	DNode *node = malloc(sizeof(DNode));
+	InitDNode(node, e);
+	if (L->length==1) {
+		L->head = node;
+		L->tail = node;
+		node->next = node;
+		node->prior = node;
+		return;
+	}
+	node->prior = L->tail;
+	node->next = L->head;
+	L->tail->next = node;
+	L->head->prior = node;
+	L->tail = node;
+}
+
+bool IsDLinkListSymmetrical(DLinkList * L){
+	DNode * walkh = L->head->next;
+	DNode * walkt = L->tail;
+	while (walkh!=walkt&&walkt->next!=walkh) {
+		if (walkh->data!=walkt->data) {
+			return false;
+		}
+		walkh = walkh->next;
+		walkt = walkt->prior;
+	}
+	return true;
 }

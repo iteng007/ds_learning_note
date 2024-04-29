@@ -1,4 +1,5 @@
 #include "../include/LinkList.h"
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 void ListPushTest();
@@ -15,6 +16,8 @@ void LinkListDivideTest();
 void  LinkListDeDupTest();
 void CreateLinkListFromCommonNodeValTest();
 void LinkListIntersectionTest();
+void IsSubLinkListValTest();
+void IsSubLinkListValTest2();
 int main(){
 	// ListPushTest();
 	// void GetELemTest();
@@ -29,7 +32,9 @@ int main(){
 	// LinkListDivideTest();
 	// LinkListDeDupTest();
 	// CreateLinkListFromCommonNodeValTest();
-	LinkListIntersectionTest();
+	// LinkListIntersectionTest();
+	// IsSubLinkListValTest();
+	IsSubLinkListValTest2();
 }
 void ListPushTest(){
 	LinkList list;
@@ -272,6 +277,42 @@ void LinkListIntersectionTest(){
 	PrintLinkListWithOutFakeHead(&list2);
 	LinkListIntersection(&list1, &list2);
 	PrintLinkListWithOutFakeHead(&list1);
+	DestroyLinkList(&list1);
+	DestroyLinkList(&list2);
+}
+void IsSubLinkListValTest(){
+	LinkList list1;
+	InitLinkList(&list1);
+	LinkList list2;
+	InitLinkList(&list2);
+	for (int i = 15 ; i>0; i--) {
+		LinkListInsert(&list1,0,i);
+	}
+	for (int i = 6 ; i>0; i--) {
+		LinkListInsert(&list2,0,i*2);
+	}
+	PrintLinkListWithOutFakeHead(&list1);
+	PrintLinkListWithOutFakeHead(&list2);
+	bool is_sub = IsSubLinkListVal(&list1, &list2);
+	printf("Is sub ?: %d",is_sub);
+	DestroyLinkList(&list1);
+	DestroyLinkList(&list2);
+}
+void IsSubLinkListValTest2(){
+	LinkList list1;
+	InitLinkList(&list1);
+	LinkList list2;
+	InitLinkList(&list2);
+	for (int i = 15 ; i>0; i--) {
+		LinkListInsert(&list1,0,i);
+	}
+	for (int i = 15 ; i>0; i--) {
+		LinkListInsert(&list2,0,i*2);
+	}
+	PrintLinkListWithOutFakeHead(&list1);
+	PrintLinkListWithOutFakeHead(&list2);
+	bool is_sub = IsSubLinkListVal(&list1, &list2);
+	printf("Is sub ?: %d",is_sub);
 	DestroyLinkList(&list1);
 	DestroyLinkList(&list2);
 }

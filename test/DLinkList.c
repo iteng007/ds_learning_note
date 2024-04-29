@@ -1,7 +1,13 @@
 #include "../include/DLinkList.h"
+#include <stdbool.h>
+#include <stdio.h>
 void DLinkListInsertTest();
+void DLinkListPushTest();
+void IsDLinkListSymmetricalTest();
 int main(){
-DLinkListInsertTest();
+// DLinkListInsertTest();
+//  DLinkListPushTest();
+IsDLinkListSymmetricalTest();
 }
 void DLinkListInsertTest(){
 	DLinkList list;
@@ -11,5 +17,41 @@ void DLinkListInsertTest(){
 	}
 	PrintDLinkList(&list);	
 	PrintRDLinkList(&list);
+	DestroyDLinkList(&list);
+}
+void DLinkListPushTest(){
+	DLinkList list;
+	InitDLinkList(&list);
+	for (int i = 0; i<15; i++) {
+		DLinkListPush(&list, i);
+	}
+	PrintDLinkList(&list);	
+	PrintRDLinkList(&list);
+	DestroyDLinkList(&list);
+}
+void IsDLinkListSymmetricalTest(){
+	DLinkList list;
+	InitDLinkList(&list);
+	//头节点。
+	DLinkListPush(&list, -1);
+	DLinkListPush(&list, 1);
+	bool is_sym = IsDLinkListSymmetrical(&list);
+	
+	PrintDLinkListWithoutHead(&list);	
+
+	printf("Is sym :%d\n",is_sym);
+	DLinkListPush(&list, 1);
+	PrintDLinkListWithoutHead(&list);	
+	is_sym = IsDLinkListSymmetrical(&list);
+	printf("Is sym :%d\n",is_sym);
+		DLinkListPush(&list, 2);
+	PrintDLinkListWithoutHead(&list);	
+	is_sym = IsDLinkListSymmetrical(&list);
+	printf("Is sym :%d\n",is_sym);
+	DLinkListPush(&list, 1);
+	DLinkListPush(&list, 1);
+	PrintDLinkListWithoutHead(&list);	
+	is_sym = IsDLinkListSymmetrical(&list);
+	printf("Is sym :%d\n",is_sym);
 	DestroyDLinkList(&list);
 }
