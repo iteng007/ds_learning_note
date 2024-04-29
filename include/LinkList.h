@@ -1,23 +1,9 @@
 #ifndef LINKLIST
 #define LINKLIST
 #define  ElemType int
+#include "LNode.h"
 #include <stdbool.h>
-/**
- * @brief 单链表
- * 
- */
-typedef struct LNode{
-	ElemType data;
-	struct LNode * next;
-}LNode;
 
-/**
- * @brief 使用e初始化节点L
- * 
- * @param L 
- * @param e 
- */
-void InitLNode(LNode * L,ElemType e);
 
 
 typedef struct LinkList{
@@ -26,15 +12,7 @@ typedef struct LinkList{
 	int length;
 }LinkList;
 
-/**
- * @brief 循环单链表
- * 
- */
-typedef struct CirLinkList{
-	LNode * head;
-	LNode * tail;
-	int length;
-}CirLinkList;
+
 /**
  * @brief 初始化链表
  * 

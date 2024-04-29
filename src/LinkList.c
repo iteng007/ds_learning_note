@@ -6,10 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void InitLNode(LNode *L, ElemType e) {
-  L->data = e;
-  L->next = NULL;
-}
+
 
 void InitLinkList(LinkList *L) {
   L->head = NULL;

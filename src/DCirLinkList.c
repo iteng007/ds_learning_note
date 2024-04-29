@@ -1,20 +1,15 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "../include/DLinkList.h"
-
-void InitDNode(DNode *node,ElemType e){
-	node->data = e;
-	node->next = NULL;
-	node->prior = NULL;
-}
+#include "../include/DCirLinkList.h"
 
 
-void InitDLinkList(DLinkList *L){
+
+void InitDLinkList(DCirLinkList *L){
 	L->head = L->tail = NULL;
 	L->length = 0;
 }
-bool DLinkListInsert(DLinkList *L,int i ,ElemType e){
+bool DLinkListInsert(DCirLinkList *L,int i ,ElemType e){
 	if (i>L->length||i<0) {
 		return false;
 	}
@@ -55,14 +50,14 @@ bool DLinkListInsert(DLinkList *L,int i ,ElemType e){
 	return true;
 }
 
-bool DLinkListDelete(DLinkList *L,int i,ElemType *e){
+bool DLinkListDelete(DCirLinkList *L,int i,ElemType *e){
 	if (i<0||i>=L->length) {
 		return false;
 	}
 
 }
 
-void PrintDLinkList(DLinkList *L){
+void PrintDLinkList(DCirLinkList *L){
 	int length = L->length;
 	DNode *walk = L->head;
 	while (length>0) {
@@ -73,7 +68,7 @@ void PrintDLinkList(DLinkList *L){
 	printf("\n");
 }
 
-void PrintDLinkListWithoutHead(DLinkList *L){
+void PrintDLinkListWithoutHead(DCirLinkList *L){
 	int length = L->length;
 	DNode *walk = L->head->next;
 	while (length>1) {
@@ -84,7 +79,7 @@ void PrintDLinkListWithoutHead(DLinkList *L){
 	printf("\n");
 }
 
-void PrintRDLinkList(DLinkList *L){
+void PrintRDLinkList(DCirLinkList *L){
 	int length = L->length;
 	DNode *walk = L->tail;
 	while (length>0) {
@@ -95,7 +90,7 @@ void PrintRDLinkList(DLinkList *L){
 	printf("\n");
 }
 
-void DestroyDLinkList(DLinkList *L){
+void DestroyDLinkList(DCirLinkList *L){
 	DNode * walk = L->head;
 	DNode * temp;
 	int count = L->length;
@@ -110,7 +105,7 @@ void DestroyDLinkList(DLinkList *L){
 	L->length = 0;
 }
 
-void DLinkListPush(DLinkList *L,ElemType e){
+void DLinkListPush(DCirLinkList *L,ElemType e){
 	L->length++;
 	DNode *node = malloc(sizeof(DNode));
 	InitDNode(node, e);
@@ -128,7 +123,7 @@ void DLinkListPush(DLinkList *L,ElemType e){
 	L->tail = node;
 }
 
-bool IsDLinkListSymmetrical(DLinkList * L){
+bool IsDLinkListSymmetrical(DCirLinkList * L){
 	DNode * walkh = L->head->next;
 	DNode * walkt = L->tail;
 	while (walkh!=walkt&&walkt->next!=walkh) {

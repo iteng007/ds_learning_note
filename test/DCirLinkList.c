@@ -1,4 +1,4 @@
-#include "../include/DLinkList.h"
+#include "../include/DCirLinkList.h"
 #include <stdbool.h>
 #include <stdio.h>
 void DLinkListInsertTest();
@@ -10,7 +10,7 @@ int main(){
 IsDLinkListSymmetricalTest();
 }
 void DLinkListInsertTest(){
-	DLinkList list;
+	DCirLinkList list;
 	InitDLinkList(&list);
 	for (int i = 0; i<15; i++) {
 		DLinkListInsert(&list, 0, i);
@@ -20,7 +20,7 @@ void DLinkListInsertTest(){
 	DestroyDLinkList(&list);
 }
 void DLinkListPushTest(){
-	DLinkList list;
+	DCirLinkList list;
 	InitDLinkList(&list);
 	for (int i = 0; i<15; i++) {
 		DLinkListPush(&list, i);
@@ -30,7 +30,7 @@ void DLinkListPushTest(){
 	DestroyDLinkList(&list);
 }
 void IsDLinkListSymmetricalTest(){
-	DLinkList list;
+	DCirLinkList list;
 	InitDLinkList(&list);
 	//头节点。
 	DLinkListPush(&list, -1);
