@@ -28,7 +28,7 @@ LNode *LinkListGetELem(LinkList *L, int i) {
   return walk;
 }
 
-LNode *LinkListFreqLocateElem(LinkList *L, ElemType e) {
+LNode *LinkListLocateElem(LinkList *L, ElemType e) {
   LNode *walk = L->head;
   while (walk) {
     if (walk->data == e) {
@@ -414,4 +414,41 @@ bool IsSubLinkListVal(LinkList *L,LinkList *R){
     return false;
    }
    return true;
+}
+
+//该问题实际可以转化为将L.Length(即N)-K个元素移动至末尾。
+void LinkListRightShiftK(LinkList *L,int K){
+  LNode * walk = L->head;
+  LNode * temp;
+  //题目保证0<K<N
+  int counter = L->length-K;
+  while (counter>1) {
+        walk = walk->next;
+        counter--;
+  }
+  temp = walk->next;
+  walk->next = NULL;
+  L->tail->next = L->head;
+  L->head = temp;
+}
+
+//题目保证节点数为偶数
+ElemType LinkListMaxTwinVal(LinkList *L){
+  //空间换时间秒了
+    LNode * walk = L->head;
+    int max = INT_MIN;
+    int node_val[L->length];
+    int index = 0;
+    int add;
+    while (walk) {
+      node_val[index++] = walk->data;
+      walk = walk->next;
+    }
+    for (int i = 0,j = L->length-1; i<j; i++,j--) {
+        add = node_val[i]+node_val[j];
+        if (add>max) {
+          max = add;
+        }
+    }
+    return max;
 }

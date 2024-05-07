@@ -146,4 +146,22 @@ void LinkListIntersection(LinkList *L,LinkList *R);
  * @param R 
  */
 bool IsSubLinkListVal(LinkList *L,LinkList *R);
+
+/**
+ * @brief p44.14 循环右移K
+ * L:0->1->2->3 N:1
+ * Result: 3->0->1->2
+ * @param L 
+ * @param N 
+ */
+void LinkListRightShiftK(LinkList *L,int K);
+
+/**
+ * @brief p44.16
+ * 孪生节点和的定义为第i个节点与第L.length-i-1个节点的和
+ * i从0开始
+ * @param L 
+ * @return ElemType 最大孪生节点和
+ */
+ElemType LinkListMaxTwinVal(LinkList *L);
 #endif

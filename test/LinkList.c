@@ -18,6 +18,8 @@ void CreateLinkListFromCommonNodeValTest();
 void LinkListIntersectionTest();
 void IsSubLinkListValTest();
 void IsSubLinkListValTest2();
+void LinkListRightShiftKTest();
+void LinkListMaxTwinValTest();
 int main(){
 	// ListPushTest();
 	// void GetELemTest();
@@ -34,7 +36,9 @@ int main(){
 	// CreateLinkListFromCommonNodeValTest();
 	// LinkListIntersectionTest();
 	// IsSubLinkListValTest();
-	IsSubLinkListValTest2();
+	// IsSubLinkListValTest2();
+	// LinkListRightShiftKTest();
+	LinkListMaxTwinValTest();
 }
 void ListPushTest(){
 	LinkList list;
@@ -83,7 +87,7 @@ void LocateElemTest(){
 	printf("head:%d\n",list.head->data);
 	printf("tail:%d\n",list.tail->data);
 	for (int i = 0 ; i<18; i++) {
-		LNode * node = LinkListFreqLocateElem(&list, i);
+		LNode * node = LinkListLocateElem(&list, i);
 		if (node) {
 			printf("Node contains %d exists \n",i);
 		}else {
@@ -315,4 +319,28 @@ void IsSubLinkListValTest2(){
 	printf("Is sub ?: %d",is_sub);
 	DestroyLinkList(&list1);
 	DestroyLinkList(&list2);
+}
+
+void LinkListRightShiftKTest(){
+	LinkList list;
+	InitLinkList(&list);
+	for (int i = 15 ; i>0; i--) {
+		LinkListInsert(&list,0,i);
+	}
+	PrintLinkList(&list);
+	LinkListRightShiftK(&list, 3);
+	PrintLinkList(&list);
+	DestroyLinkList(&list);
+}
+
+void LinkListMaxTwinValTest(){
+	LinkList list;
+	InitLinkList(&list);
+	for (int i = 15 ; i>=0; i--) {
+		LinkListInsert(&list,0,i*i+i/2);
+	}
+	PrintLinkList(&list);
+	ElemType max_twin_val = LinkListMaxTwinVal(&list);
+	printf("%d\n",max_twin_val);
+	DestroyLinkList(&list);
 }
