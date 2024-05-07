@@ -5,7 +5,7 @@
 
 
 
-void InitDLinkList(DCirLinkList *L){
+void InitCirDLinkList(DCirLinkList *L){
 	L->head = L->tail = NULL;
 	L->length = 0;
 }

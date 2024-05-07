@@ -10,9 +10,8 @@ CirLinkList: ../src/CirLinkList.c ../src/LinkList.c CirLinkList.c ../src/Algorit
 	$(CC) $(CFLAGS) -o $@ $^
 DCirLinkList: ../src/DCirLinkList.c ../src/DNode.c DCirLinkList.c ../src/Algorithms.c
 	$(CC) $(CFLAGS) -o $@ $^
-# 编译并链接
-# %: ../src/%.c  %.c  ../src/Algorithms.c ../src/LinkList.c
-# 	$(CC) $(CFLAGS) -o $@ $^
+DLinkListFreq: ../src/DLinkListFreq.c ../src/DNode.c DLinkListFreq.c ../src/Algorithms.c
+	$(CC) $(CFLAGS) -o $@ $^
 
 
 

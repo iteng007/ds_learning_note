@@ -9,7 +9,7 @@
  * @brief 双向循环链表
  * 
  */
-typedef struct DLinkList{
+typedef struct DCirLinkList{
 	struct DNode * head;
 	struct DNode * tail;
 	int length;
@@ -20,7 +20,7 @@ typedef struct DLinkList{
  * 
  * @param L 
  */
-void InitDLinkList(DCirLinkList *L);
+void InitCirDLinkList(DCirLinkList *L);
 /**
  * @brief 将元素e插入双向链表的第i个位置
  * 

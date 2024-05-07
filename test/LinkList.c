@@ -83,7 +83,7 @@ void LocateElemTest(){
 	printf("head:%d\n",list.head->data);
 	printf("tail:%d\n",list.tail->data);
 	for (int i = 0 ; i<18; i++) {
-		LNode * node = LinkListLocateElem(&list, i);
+		LNode * node = LinkListFreqLocateElem(&list, i);
 		if (node) {
 			printf("Node contains %d exists \n",i);
 		}else {

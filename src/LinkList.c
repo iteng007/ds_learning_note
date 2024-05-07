@@ -28,7 +28,7 @@ LNode *LinkListGetELem(LinkList *L, int i) {
   return walk;
 }
 
-LNode *LinkListLocateElem(LinkList *L, ElemType e) {
+LNode *LinkListFreqLocateElem(LinkList *L, ElemType e) {
   LNode *walk = L->head;
   while (walk) {
     if (walk->data == e) {

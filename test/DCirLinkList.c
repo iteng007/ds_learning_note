@@ -11,7 +11,7 @@ IsDLinkListSymmetricalTest();
 }
 void DLinkListInsertTest(){
 	DCirLinkList list;
-	InitDLinkList(&list);
+	InitCirDLinkList(&list);
 	for (int i = 0; i<15; i++) {
 		DLinkListInsert(&list, 0, i);
 	}
@@ -21,7 +21,7 @@ void DLinkListInsertTest(){
 }
 void DLinkListPushTest(){
 	DCirLinkList list;
-	InitDLinkList(&list);
+	InitCirDLinkList(&list);
 	for (int i = 0; i<15; i++) {
 		DLinkListPush(&list, i);
 	}
@@ -31,7 +31,7 @@ void DLinkListPushTest(){
 }
 void IsDLinkListSymmetricalTest(){
 	DCirLinkList list;
-	InitDLinkList(&list);
+	InitCirDLinkList(&list);
 	//头节点。
 	DLinkListPush(&list, -1);
 	DLinkListPush(&list, 1);
